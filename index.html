@@ -1,144 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Glitch Reality Feed</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
-
-  body {
-    background-color: black;
-    color: #0ff;
-    font-family: 'Share Tech Mono', monospace;
-    overflow: hidden;
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .glitch {
-    font-size: 1.5em;
-    position: relative;
-    display: inline-block;
-    animation: glitch-skew 2s infinite linear alternate-reverse;
-  }
-
-  .glitch::before,
-  .glitch::after {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 0.8;
-    clip: rect(0, 900px, 0, 0);
-  }
-
-  .glitch::before {
-    left: 2px;
-    text-shadow: -2px 0 magenta;
-    animation: glitch-anim 2s infinite linear alternate-reverse;
-  }
-
-  .glitch::after {
-    left: -2px;
-    text-shadow: -2px 0 lime;
-    animation: glitch-anim2 3s infinite linear alternate-reverse;
-  }
-
-  @keyframes glitch-anim {
-    0% { clip: rect(42px, 9999px, 44px, 0); }
-    20% { clip: rect(12px, 9999px, 90px, 0); }
-    40% { clip: rect(85px, 9999px, 140px, 0); }
-    60% { clip: rect(24px, 9999px, 60px, 0); }
-    80% { clip: rect(10px, 9999px, 80px, 0); }
-    100% { clip: rect(55px, 9999px, 75px, 0); }
-  }
-
-  @keyframes glitch-anim2 {
-    0% { clip: rect(12px, 9999px, 90px, 0); }
-    20% { clip: rect(42px, 9999px, 60px, 0); }
-    40% { clip: rect(85px, 9999px, 140px, 0); }
-    60% { clip: rect(24px, 9999px, 60px, 0); }
-    80% { clip: rect(10px, 9999px, 80px, 0); }
-    100% { clip: rect(55px, 9999px, 75px, 0); }
-  }
-
-  @keyframes glitch-skew {
-    0% { transform: skew(0deg); }
-    25% { transform: skew(1deg); }
-    50% { transform: skew(-1deg); }
-    75% { transform: skew(0.5deg); }
-    100% { transform: skew(-0.5deg); }
-  }
-
-  #background {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-    background: radial-gradient(circle, rgba(0,255,255,0.05) 0%, black 80%);
-    animation: pulse 8s infinite alternate;
-  }
-
-  @keyframes pulse {
-    from { background-color: black; }
-    to { background-color: #030b0b; }
-  }
-
-  #subtitle {
-    color: #888;
-    font-size: 0.9em;
-    margin-top: 20px;
-    opacity: 0.6;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wizard - A C++ Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Press Start 2P', cursive;
+            background: linear-gradient(to right, #1a1a2e, #162447, #1f4068);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+        header {
+            text-align: center;
+            margin: 40px 20px 20px 20px;
+        }
+        h1 {
+            font-size: 2rem;
+            color: #f6f6f6;
+            text-shadow: 2px 2px #0f3460;
+        }
+        h2 {
+            font-size: 1.2rem;
+            margin: 20px 0 10px 0;
+        }
+        pre {
+            background: #0f3460;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            width: 90%;
+            max-width: 1000px;
+        }
+        code {
+            color: #ffd166;
+        }
+        .instructions {
+            max-width: 800px;
+            text-align: center;
+            margin: 20px;
+        }
+        footer {
+            margin: 50px 0 20px 0;
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+        .btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 25px;
+            color: #fff;
+            text-decoration: none;
+            background: #f95738;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #fc3c00;
+        }
+    </style>
 </head>
 <body>
 
-<div id="background"></div>
-<div id="content" class="glitch" data-text="Initializing Reality Feed...">
-  Initializing Reality Feed...
-</div>
-<div id="subtitle">[ Transmission from an alternate timeline ]</div>
+<header>
+    <h1>🧙‍♂️ Wizard</h1>
+    <p>A Simple Game of Wizards Doing Wizard Shit</p>
+</header>
 
-<script>
-const fragments = [
-  "You remember a world that never existed.",
-  "Someone has replaced your memories with improved versions.",
-  "Reality maintenance is currently offline.",
-  "The commercials are whispering your name again.",
-  "Every object has begun to question its purpose.",
-  "The year changes daily now.",
-  "You suspect your dreams are government property.",
-  "Your apartment dissolves when unobserved.",
-  "You found a note in your handwriting: 'Wake up before the edit.'",
-  "The sky is buffering.",
-  "Ubik is available in aerosol, liquid, and metaphysical form.",
-  "Your reflection delayed by 3.7 seconds.",
-  "Emotions now require a subscription.",
-  "A message from VALIS: everything is information.",
-  "Entropy has been postponed.",
-  "You are an unreliable narrator in someone else's simulation.",
-  "Please stand by. Consensus reality is rebooting."
-];
+<section class="instructions">
+    <h2>About the Game</h2>
+    <p>
+        Wizard is a C++ console game where you battle an evil wizard using attacks and defense strategies.
+        Keep your hit points above 0 while defeating the evil wizard to win. 
+    </p>
+    <h2>How to Play Locally</h2>
+    <ol>
+        <li>Install a C++ compiler (like GCC or Visual Studio).</li>
+        <li>Copy the <code>wizard.cpp</code> file to your computer.</li>
+        <li>Compile it: <code>g++ wizard.cpp -o wizard</code></li>
+        <li>Run the game: <code>./wizard</code> (Linux/Mac) or <code>wizard.exe</code> (Windows)</li>
+    </ol>
+</section>
 
-const content = document.getElementById("content");
+<section>
+    <h2>Game Code</h2>
+    <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
 
-function glitchFeed() {
-  const randomText = fragments[Math.floor(Math.random() * fragments.length)];
-  content.innerText = randomText;
-  content.setAttribute("data-text", randomText);
+int main() {
+    srand(time(0));
+    int life = 100;
+    int enemy_life = 125;
+    bool ans = 0;
+
+    cout &lt;&lt; "Welcome to Wizard!" &lt;&lt; endl;
+
+    while(enemy_life &gt; 0 && life &gt; 0) {
+        cout &lt;&lt; "Choose action: (0) Fight, (1) Defend: ";
+        cin &gt;&gt; ans;
+        if(ans == 0) {
+            int chance = rand() % 100;
+            if(chance &lt; 52) life -= 12;
+            enemy_life -= 10;
+            cout &lt;&lt; "YOUR HP: " &lt;&lt; life &lt;&lt; " | ENEMY HP: " &lt;&lt; enemy_life &lt;&lt; endl;
+        } else {
+            cout &lt;&lt; "You defend successfully!" &lt;&lt; endl;
+        }
+    }
+
+    cout &lt;&lt; "Final HP: " &lt;&lt; life &lt;&lt; endl;
+    if(enemy_life &lt; 1) cout &lt;&lt; "You defeated the Evil Wizard!" &lt;&lt; endl;
+    else cout &lt;&lt; "The Evil Wizard prevails..." &lt;&lt; endl;
 }
+    </code></pre>
+</section>
 
-setInterval(glitchFeed, 4000);
-</script>
+<section class="instructions">
+    <h2>Get the Game</h2>
+    <a class="btn" href="wizard.cpp" download>Download Source Code</a>
+</section>
+
+<footer>
+    &copy; robot-sword78634 | Hosted on GitHub Pages
+</footer>
 
 </body>
 </html>
-
