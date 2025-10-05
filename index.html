@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glitch Reality Feed</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+  body {
+    background-color: black;
+    color: #0ff;
+    font-family: 'Share Tech Mono', monospace;
+    overflow: hidden;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .glitch {
+    font-size: 1.5em;
+    position: relative;
+    display: inline-block;
+    animation: glitch-skew 2s infinite linear alternate-reverse;
+  }
+
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0.8;
+    clip: rect(0, 900px, 0, 0);
+  }
+
+  .glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 magenta;
+    animation: glitch-anim 2s infinite linear alternate-reverse;
+  }
+
+  .glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 lime;
+    animation: glitch-anim2 3s infinite linear alternate-reverse;
+  }
+
+  @keyframes glitch-anim {
+    0% { clip: rect(42px, 9999px, 44px, 0); }
+    20% { clip: rect(12px, 9999px, 90px, 0); }
+    40% { clip: rect(85px, 9999px, 140px, 0); }
+    60% { clip: rect(24px, 9999px, 60px, 0); }
+    80% { clip: rect(10px, 9999px, 80px, 0); }
+    100% { clip: rect(55px, 9999px, 75px, 0); }
+  }
+
+  @keyframes glitch-anim2 {
+    0% { clip: rect(12px, 9999px, 90px, 0); }
+    20% { clip: rect(42px, 9999px, 60px, 0); }
+    40% { clip: rect(85px, 9999px, 140px, 0); }
+    60% { clip: rect(24px, 9999px, 60px, 0); }
+    80% { clip: rect(10px, 9999px, 80px, 0); }
+    100% { clip: rect(55px, 9999px, 75px, 0); }
+  }
+
+  @keyframes glitch-skew {
+    0% { transform: skew(0deg); }
+    25% { transform: skew(1deg); }
+    50% { transform: skew(-1deg); }
+    75% { transform: skew(0.5deg); }
+    100% { transform: skew(-0.5deg); }
+  }
+
+  #background {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background: radial-gradient(circle, rgba(0,255,255,0.05) 0%, black 80%);
+    animation: pulse 8s infinite alternate;
+  }
+
+  @keyframes pulse {
+    from { background-color: black; }
+    to { background-color: #030b0b; }
+  }
+
+  #subtitle {
+    color: #888;
+    font-size: 0.9em;
+    margin-top: 20px;
+    opacity: 0.6;
+  }
+</style>
+</head>
+<body>
+
+<div id="background"></div>
+<div id="content" class="glitch" data-text="Initializing Reality Feed...">
+  Initializing Reality Feed...
+</div>
+<div id="subtitle">[ Transmission from an alternate timeline ]</div>
+
+<script>
+const fragments = [
+  "You remember a world that never existed.",
+  "Someone has replaced your memories with improved versions.",
+  "Reality maintenance is currently offline.",
+  "The commercials are whispering your name again.",
+  "Every object has begun to question its purpose.",
+  "The year changes daily now.",
+  "You suspect your dreams are government property.",
+  "Your apartment dissolves when unobserved.",
+  "You found a note in your handwriting: 'Wake up before the edit.'",
+  "The sky is buffering.",
+  "Ubik is available in aerosol, liquid, and metaphysical form.",
+  "Your reflection delayed by 3.7 seconds.",
+  "Emotions now require a subscription.",
+  "A message from VALIS: everything is information.",
+  "Entropy has been postponed.",
+  "You are an unreliable narrator in someone else's simulation.",
+  "Please stand by. Consensus reality is rebooting."
+];
+
+const content = document.getElementById("content");
+
+function glitchFeed() {
+  const randomText = fragments[Math.floor(Math.random() * fragments.length)];
+  content.innerText = randomText;
+  content.setAttribute("data-text", randomText);
+}
+
+setInterval(glitchFeed, 4000);
+</script>
+
+</body>
+</html>
+
